@@ -1,0 +1,21 @@
+[
+    {
+        "action": "move",
+        "x": 55,
+        "y": 200
+    },
+    {
+        "action": "move",
+        "x": 55,
+        "y": 82
+    },
+    {
+        "action": "vacuum",
+        "value": 1
+    },
+    {
+        "action": "move",
+        "x": 55,
+        "y": 200
+    }
+]
