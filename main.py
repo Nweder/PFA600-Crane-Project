@@ -14,7 +14,8 @@ def postion_log(product_id,x,y,vacuum):
         write_to_file = csv.writer(file)
         write_to_file.writerow([product_id,x,y,vacuum,datetime.now()])
     
-# D nivå funktion
+# D nivå vi lägger till funktion som läser regsiter från simulator vid modbus, skickar registeradressen, läser hoding register & retunrear värdet. 
+#tex jag använder register 17 för att kontrollera om det finns en produkt på Source1 och register 19 för att kontrollera om Process1 körs.
 def read_register(address):
     result = client.read_holding_registers(address=address, count=1)
     return result.registers[0]
