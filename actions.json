@@ -9,6 +9,8 @@
     {"action": "vacuum", "value": 0},
     {"action": "move", "x": 450, "y": 200},
 
+    {"action": "process1"},
+
     {"action": "move", "x": 450, "y": 82},
     {"action": "vacuum", "value": 1},
     {"action": "move", "x": 450, "y": 200},
@@ -17,4 +19,7 @@
     {"action": "move", "x": 945, "y": 82},
     {"action": "vacuum", "value": 0},
     {"action": "move", "x": 945, "y": 200}
+
+
+
 ]
