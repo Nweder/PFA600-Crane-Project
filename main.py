@@ -1,9 +1,20 @@
 from pymodbus.client import ModbusTcpClient
 import json
 import time
+import csv
+from datetime import datetime
 
-client = ModbusTcpClient("127.0.0.1:502")
+client = ModbusTcpClient("127.0.0.1")
 
+#betyg C ( skapar csv log file )
+product_id = 1 
+def postion_log(product_id,x,y,vacuum):
+    with open("log.csv", "a", newline="") as file: #We can change "a" to "w" then w will rewrite and delete the old data if we want everytime we run the program/machine. 
+
+        write_to_file = csv.writer(file)
+        write_to_file.writerow([product_id,x,y,vacuum,datetime.now()])
+    
+# D nivå funktion
 def read_register(address):
     result = client.read_holding_registers(address=address, count=1)
     return result.registers[0]
@@ -12,7 +23,7 @@ def read_register(address):
 with open("actions.json", "r") as file:
     actions = json.load(file)
     
-
+    
 if client.connect():
     print("You are Connected!")
 
@@ -54,6 +65,8 @@ if client.connect():
 
                 time.sleep(1)
 
+                postion_log(product_id,x,y,value)
+
             # Betyg D " lägger till action till process1"
             elif action["action"] == "process1":
                 print("Starting Process 1")
@@ -74,6 +87,10 @@ if client.connect():
 
 
         print("Part completed!")
+
+        #Hänger ihop med (C betyg) vi har den till att följa produkt tex försa = 1, andra prodkuct = 2 osv 
+        product_id = product_id + 1
+
         print("Waiting for next part...")
 
 else:
